@@ -5,7 +5,7 @@ using namespace std;
 void selection (int &choice);
 void budget ();
 void recommendedBudget (double totalBudget);
-void customBudget (doubel totalBudget);
+void customBudget (double totalBudget);
 
 int main() {
   int choice;
@@ -83,8 +83,8 @@ void recommendedBudget (double totalBudget) {
   savings = 0.2 * totalBudget;
 
   cout << "The amount allocated to needs is: " << needs << endl;
-  cout << "The wants allocated to needs is: " << wants << endl;
-  cout << "The savings allocated to needs is: " << savings << endl;
+  cout << "The wants allocated to wants is: " << wants << endl;
+  cout << "The savings allocated to savings is: " << savings << endl;
   
   int cont;
     
@@ -97,7 +97,7 @@ void recommendedBudget (double totalBudget) {
 
       cout << "Would you like to edit the budget or use a different component."
       cout << "
-      cin << cont;
+      cin >> cont;
 
       if (cont == 2) {
         cout << "Returning to selection screen." << endl;
@@ -106,13 +106,23 @@ void recommendedBudget (double totalBudget) {
 
 }
 
-void customBudget (doubel totalBudget) {
-  string category[100];
-  double categoryValue[100];
+void customBudget (double totalBudget) {
+
+  int categoryCount;
   
-  cout << "Please input the first category and the value associated with it" << endl;
-  cin >> category[0] >>
-    
-  while (
+  cout << "Input amount of categories: " << endl;
+  cin >> categoryCount;
+  
+  string category[categoryCount];
+  double categoryValue[categoryCount];
+
+  for(int i = 0; i < categoryCount; i++){
+  cout << "Please input title for category " << (i + 1) << endl;
+  cin >> category[i];
+
+  cout << "Please input amount for category " << (i + 1) << endl;
+  cin >> categoryValue[i]; 
+  }
 
 }
+
