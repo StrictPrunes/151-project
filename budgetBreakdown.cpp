@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ int main() {
 
     }
 
-    selection (choice)
+    selection (choice);
 
     if (choice == 4) {
       cout << "Program terminating.";
@@ -60,7 +61,7 @@ void budget () {
   int budgetChoice;
   cout << "Would you like to: " << endl; 
   cout << "1. use the recommended budget or" << endl;
-  cout << "2. input your own categories." << endl
+  cout << "2. input your own categories." << endl;
   cin >> budgetChoice;
 
   if (budgetChoice == 1) {
@@ -109,9 +110,16 @@ void recommendedBudget (double totalBudget) {
 void customBudget (double totalBudget) {
 
   int categoryCount;
+  int totalPercent = 0, totalAmount = 0, choice;
   
   cout << "Input amount of categories: " << endl;
   cin >> categoryCount;
+
+  do{
+    cout << "Will investments be an amount or percentage \n1) Amount \n2) Percent" << endl;
+    cout << "Note: All remaining percentages or amounts will be added to a savings category with the option to calculate interest" << endl;
+    cin << choice
+  } while (choice != 1 && choice != 2);
   
   string category[categoryCount];
   double categoryValue[categoryCount];
@@ -120,9 +128,14 @@ void customBudget (double totalBudget) {
   cout << "Please input title for category " << (i + 1) << endl;
   cin >> category[i];
 
-  cout << "Please input amount for category " << (i + 1) << endl;
-  cin >> categoryValue[i]; 
+  if(choice == 1){
+    cout << "Please input amount for category " << (i + 1) << endl;
+    cin >> categoryValue[i]; 
+  }else {
+    cout << "Please input percentage for category " << (i + 1) << endl;
+    cin >> categoryValue[i]; 
   }
 
 }
+
 
