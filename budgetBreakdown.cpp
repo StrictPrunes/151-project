@@ -1,15 +1,18 @@
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
 void selection (int &choice);
-void budget ();
-void recommendedBudget (double totalBudget);
-void customBudget (double totalBudget);
+void budget (double netIncome, double &savingValue);
+void recommendedBudget (double totalBudget, double &savingValue);
+void customBudget (double totalBudget, double &savingValue);
 
 int main() {
   int choice;
+  double netIncome = 1000;
+  double savings = 0;
 
   selection (choice);
 
@@ -17,8 +20,14 @@ int main() {
     if (choice == 1) {
       
     } else if (choice == 2) {
-      budget ();
+      budget (netIncome, savings);
     } else {
+
+      if(savings > 0){
+
+      }else{
+        cout << "No savings value given!" << endl;
+      }
 
     }
 
@@ -26,6 +35,7 @@ int main() {
 
     if (choice == 4) {
       cout << "Program terminating.";
+      cout << savings;
     }
   }
   return 0;
@@ -42,7 +52,7 @@ void selection (int &choice) {
   cin >> choice;
 }
 
-void budget () {
+void budget (double netIncome, double &savingValue) {
   int incomeChoice;
   double totalBudget;
   
@@ -65,52 +75,36 @@ void budget () {
   cin >> budgetChoice;
 
   if (budgetChoice == 1) {
-    recommendedBudget (totalBudget);
+    recommendedBudget (totalBudget, savingValue);
   } else {
-    customBudget (totalBudget);
+    customBudget (totalBudget, savingValue);
   }
 
 }
 
 
-void recommendedBudget (double totalBudget) {
+void recommendedBudget (double totalBudget, double &savingValue) {
   cout << "We recommend following the 50/30/20 rule for budgeting." << endl;
   cout << "This means that 50% of your budget will be allocated to needs, 30% to wants, and 20% to savings and debt repayment." << endl;
 
-  double needs, wants, savings;
+  double needs, wants;
 
   needs = 0.5 * totalBudget;
   wants = 0.3 * totalBudget;
-  savings = 0.2 * totalBudget;
+  savingValue = 0.2 * totalBudget;
 
   cout << "The amount allocated to needs is: " << needs << endl;
   cout << "The wants allocated to wants is: " << wants << endl;
-  cout << "The savings allocated to savings is: " << savings << endl;
+  cout << "The savings allocated to savings is: " << savingValue << endl;
   
   int cont;
-    
-  cout << "Would you like to edit the budget or use a different component."
-  cout << "
-  cin << cont;
-
-   while (cont != 2} {
-      cout << "
-
-      cout << "Would you like to edit the budget or use a different component."
-      cout << "
-      cin >> cont;
-
-      if (cont == 2) {
-        cout << "Returning to selection screen." << endl;
-      }
-   }
 
 }
 
-void customBudget (double totalBudget) {
+void customBudget (double totalBudget, double &savingValue) {
 
-  int categoryCount;
-  int totalPercent = 0, totalAmount = 0, choice;
+  int categoryCount, check = 0;
+  double totalPercent = 0, totalAmount = 0, choice;
   
   cout << "Input amount of categories: " << endl;
   cin >> categoryCount;
@@ -118,7 +112,7 @@ void customBudget (double totalBudget) {
   do{
     cout << "Will investments be an amount or percentage \n1) Amount \n2) Percent" << endl;
     cout << "Note: All remaining percentages or amounts will be added to a savings category with the option to calculate interest" << endl;
-    cin << choice
+    cin >> choice;
   } while (choice != 1 && choice != 2);
   
   string category[categoryCount];
@@ -127,15 +121,52 @@ void customBudget (double totalBudget) {
   for(int i = 0; i < categoryCount; i++){
   cout << "Please input title for category " << (i + 1) << endl;
   cin >> category[i];
+  }
+
+  while(check == 0){
+  totalAmount = 0;
+  totalPercent = 0;
+    for(int i = 0; i < categoryCount; i++){
+      if(choice == 1){
+        cout << "Please input amount for " << category[i] << endl;
+        cin >> categoryValue[i]; 
+        totalAmount = totalAmount + categoryValue[i];
+      }else {
+        cout << "Please input percentage for " << category[i] << (i + 1) << endl;
+        cin >> categoryValue[i]; 
+        totalPercent = totalPercent + categoryValue[i];
+      }
+
+    }
+
+    if(choice == 1 && totalAmount <= totalBudget && totalAmount >= 0 || choice == 2 && totalPercent <= 100 && totalPercent >= 0){
+      check = 1;
+    }
+
+  }
+
+
+
+  for(int i = 0; i < categoryCount; i++){
 
   if(choice == 1){
-    cout << "Please input amount for category " << (i + 1) << endl;
-    cin >> categoryValue[i]; 
+
+    cout << category[i] << ": $" << categoryValue[i] << "(" << (categoryValue[i] / totalBudget * 100) << "%)" << endl;
+    
   }else {
-    cout << "Please input percentage for category " << (i + 1) << endl;
-    cin >> categoryValue[i]; 
+
+    cout << category[i] << ": $" << (categoryValue[i] * totalBudget / 100) << "(" << (categoryValue[i]) << "%)" << endl;
+    
   }
 
 }
+  if(choice == 1){
+    savingValue = totalBudget - totalAmount;
+  }else {
+    savingValue = totalBudget - (totalPercent * totalBudget / 100);
+  }
 
+  cout << "Savings: $" << savingValue << "(" << savingValue / totalBudget * 100 << "%)" << endl;
+
+}
 
