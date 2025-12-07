@@ -30,14 +30,7 @@ int main() {
       netIncome = netCalculator();
       
     } else if (choice == 2) {
-
-      if(netIncome > 0){
       budget (netIncome, savings);
-       
-      }else{
-        cout << "No income value given!" << endl;
-      }
-
     } else {
 
       if(savings > 0){
@@ -178,8 +171,10 @@ void customBudget (double totalBudget, double &savingValue) {
   cout << "Savings: $" << savingValue << "(" << savingValue / totalBudget * 100 << "%)" << endl;
 */
   string cont;
-  int categoryCount, check = 0;
-  double totalPercent = 0, totalAmount = 0, choice;
+  int choice;  
+  int check = 0;
+  double totalPercent = 0
+  double totalAmount = 0;
 
   int i=0;
   vector<string> catName;
@@ -187,8 +182,6 @@ void customBudget (double totalBudget, double &savingValue) {
   vector<double> catAmount;
   string temp;   
   double tempAmount, tempPercent; 
-
-  cout << "Note: All remaining percentages or amounts will be added to a savings category with the option to calculate interest" << endl << endl;
   
   while (cont != "N" && cont != "n"){
     cout << "Please input title for category " << (i + 1) << endl;
@@ -320,5 +313,6 @@ double calculateTax(double income, const vector<TaxBracket> &brackets){
 
     return tax;
 }
+
 
 
