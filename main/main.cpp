@@ -12,7 +12,7 @@ void selection (int &choice);
 int main() {
   int choice;
   double netIncome = 0;
-  double savings = 10000;
+  double savings = 0;
 
   selection (choice);
 
