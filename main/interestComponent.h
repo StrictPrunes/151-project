@@ -15,7 +15,7 @@
 
 using namespace std;
 
-double interest(double savings);
+void interest(double savings);
 
 /**********************************************************************
  * interest -- calculates the interest earned from savings
@@ -25,12 +25,15 @@ double interest(double savings);
  * 
  * Returns: amount -- the amount of interest earned
  *********************************************************************/
-double interest(double savings) {
+void interest(double savings) {
   int choice, frequency;
-  double rate, time, amount;
+  double rate, time, amount, principle;
 
   cout << "\nPlease choose which type of interest to use: \n1) Simple Interest \n2) Compound Interest";
   cin >> choice;
+
+  cout << "Please enter the principle amount: ";
+  cin >> principle;
 
   do {
         cout << "\nPlease enter how much time (in years) the interest is compounding for: ";
@@ -51,7 +54,7 @@ double interest(double savings) {
     } while (rate < 0 || rate > 100);
 
   if (choice == 1) {
-    amount = savings * (rate / 100) * time;
+    amount = principle * (rate / 100) * time;
   }
   else if (choice == 2) {
     do {
@@ -64,11 +67,8 @@ double interest(double savings) {
           }
       } while (frequency <=0 || frequency > 365);
 
-      amount = (savings * pow((1 + (rate / 100) / frequency), frequency * time)) - savings;
+      amount = (principle * pow((1 + (rate / 100) / frequency), frequency * time)) - principle;
   }
 
   cout << "\nInterest earned: $" << amount << endl;
-
-
-  return amount;
 }
