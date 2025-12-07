@@ -3,6 +3,7 @@
 #include <vector>
 #include "budgetComponent.h"
 #include "incomeTaxComponent.h"
+#include "interestComponent.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ void selection (int &choice);
 int main() {
   int choice;
   double netIncome = 0;
-  double savings = 0;
+  double savings = 10000;
 
   selection (choice);
 
@@ -21,11 +22,7 @@ int main() {
     } else if (choice == 2) {
       budget(netIncome, savings);
     } else {
-      if(savings > 0){
-
-      }else{
-        cout << "No savings value given!" << endl;
-      }
+        interest (savings);
     }
 
     selection (choice);
