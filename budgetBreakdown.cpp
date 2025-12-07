@@ -118,7 +118,7 @@ void recommendedBudget (double totalBudget, double &savingValue) {
 }
 
 void customBudget (double totalBudget, double &savingValue) {
-
+/*
   int categoryCount, check = 0;
   double totalPercent = 0, totalAmount = 0, choice;
   
@@ -135,13 +135,14 @@ void customBudget (double totalBudget, double &savingValue) {
   double categoryValue[categoryCount];
 
   for(int i = 0; i < categoryCount; i++){
-  cout << "Please input title for category " << (i + 1) << endl;
-  cin >> category[i];
+    cout << "Please input title for category " << (i + 1) << endl;
+    cin >> category[i];
   }
 
   while(check == 0){
-  totalAmount = 0;
-  totalPercent = 0;
+    totalAmount = 0;
+    totalPercent = 0;
+    
     for(int i = 0; i < categoryCount; i++){
       if(choice == 1){
         cout << "Please input amount for " << category[i] << endl;
@@ -152,7 +153,6 @@ void customBudget (double totalBudget, double &savingValue) {
         cin >> categoryValue[i]; 
         totalPercent = totalPercent + categoryValue[i];
       }
-
     }
 
     if(choice == 1 && totalAmount <= totalBudget && totalAmount >= 0 || choice == 2 && totalPercent <= 100 && totalPercent >= 0){
@@ -161,21 +161,14 @@ void customBudget (double totalBudget, double &savingValue) {
 
   }
 
-
-
   for(int i = 0; i < categoryCount; i++){
-
-  if(choice == 1){
-
-    cout << category[i] << ": $" << categoryValue[i] << "(" << (categoryValue[i] / totalBudget * 100) << "%)" << endl;
-    
-  }else {
-
-    cout << category[i] << ": $" << (categoryValue[i] * totalBudget / 100) << "(" << (categoryValue[i]) << "%)" << endl;
-    
+    if(choice == 1){
+      cout << category[i] << ": $" << categoryValue[i] << "(" << (categoryValue[i] / totalBudget * 100) << "%)" << endl;
+    }else {
+      cout << category[i] << ": $" << (categoryValue[i] * totalBudget / 100) << "(" << (categoryValue[i]) << "%)" << endl;
+    }
   }
-
-}
+  
   if(choice == 1){
     savingValue = totalBudget - totalAmount;
   }else {
@@ -183,7 +176,70 @@ void customBudget (double totalBudget, double &savingValue) {
   }
 
   cout << "Savings: $" << savingValue << "(" << savingValue / totalBudget * 100 << "%)" << endl;
+*/
+  string cont;
+  int categoryCount, check = 0;
+  double totalPercent = 0, totalAmount = 0, choice;
 
+  int i=0;
+  vector<string> catName;
+  vector<double> catPercent;
+  vector<double> catAmount;
+  string temp;   
+  double tempAmount, tempPercent; 
+
+  cout << "Note: All remaining percentages or amounts will be added to a savings category with the option to calculate interest" << endl << endl;
+  
+  while (cont != "N" && cont != "n"){
+    cout << "Please input title for category " << (i + 1) << endl;
+    cin >> temp;
+    catName.push_back(temp);
+    
+    do{
+      cout << "Will investments be an amount or percentage \n1) Amount \n2) Percent" << endl;
+      cin >> choice;
+    } while (choice != 1 && choice != 2);
+    
+    if(choice == 1){
+      cout << "Please input amount for " << catName[i] << endl;
+      cin >> tempAmount;
+      catAmount.push_back(tempAmount); 
+
+      tempPercent = catAmount[i] / totalBudget * 100;
+      catPercent.push_back(tempPercent);
+
+      totalAmount = totalAmount + catAmount[i];
+      totalPercent = totalPercent + catPercent[i];
+    }else {
+      cout << "Please input percentage for " << catName[i] << endl;
+      cin >> tempPercent; 
+      catPercent.push_back(tempPercent);
+
+      tempAmount = catPercent[i] * totalBudget / 100;
+      catAmount.push_back(tempAmount);
+
+      totalPercent = totalPercent + catPercent[i];
+      totalAmount = totalAmount + catAmount[i];
+    }
+
+    cout << "\n-------------------------------------\n";
+    cout << "Current categories: \n";
+    for (int i = 0; i < catName.size(); i++) {
+      cout << catName[i] << ": $" << catAmount[i] << " (" << catPercent[i] << "%)" << endl;
+    }
+
+    cout << "\nAmount remaining: $" << totalBudget - totalAmount << " (" << 100 - totalPercent << "%)" <<endl;
+
+    cout << "\nWould you like to add more categories? (Y/N)";
+    cin >> cont;
+
+    if (cont == "N" || cont == "n") {
+      cout << "\nReturning to selection screen...\n";
+      cout << "-------------------------------------\n\n";
+    }
+
+    i++;
+  }
 }
 
 
@@ -264,4 +320,5 @@ double calculateTax(double income, const vector<TaxBracket> &brackets){
 
     return tax;
 }
+
 
