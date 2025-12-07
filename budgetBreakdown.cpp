@@ -11,9 +11,8 @@ void customBudget (double totalBudget, double &savingValue);
 double netCalculator();
 
 struct TaxBracket{
-
-    double limit;
-    double rate;
+  double limit;
+  double rate;
 };
 
 double calculateTax(double income, const vector<TaxBracket> &brackets);
@@ -27,18 +26,15 @@ int main() {
 
   while (choice != 4) {
     if (choice == 1) {
-      netIncome = netCalculator();
-      
+      netIncome = netCalculator();      
     } else if (choice == 2) {
-      budget (netIncome, savings);
+        budget(netIncome, savings);
     } else {
-
       if(savings > 0){
 
       }else{
         cout << "No savings value given!" << endl;
       }
-
     }
 
     selection (choice);
@@ -47,8 +43,8 @@ int main() {
       cout << "Program terminating.";
     }
   }
-  return 0;
-  
+
+  return 0;  
 }
 
 void selection (int &choice) {
@@ -71,7 +67,13 @@ void budget (double netIncome, double &savingValue) {
   cin >> incomeChoice;
 
   if (incomeChoice == 1){
-    totalBudget = netIncome;
+    if (netIncome <= 0) {
+      cout << "No net income found" << endl;
+      cout << "Please input your total budget." << endl;
+      cin >> totalBudget;
+    }else{
+      totalBudget = netIncome;
+    }
   } else {
     cout << "Please input your total budget." << endl;
     cin >> totalBudget;
@@ -105,9 +107,6 @@ void recommendedBudget (double totalBudget, double &savingValue) {
   cout << "The amount allocated to needs is: $" << needs << endl;
   cout << "The wants allocated to wants is: $" << wants << endl;
   cout << "The savings allocated to savings is: $" << savingValue << endl;
-  
-  int cont;
-
 }
 
 void customBudget (double totalBudget, double &savingValue) {
@@ -171,9 +170,9 @@ void customBudget (double totalBudget, double &savingValue) {
   cout << "Savings: $" << savingValue << "(" << savingValue / totalBudget * 100 << "%)" << endl;
 */
   string cont;
-  int choice;  
+  int choice;
   int check = 0;
-  double totalPercent = 0
+  double totalPercent = 0;
   double totalAmount = 0;
 
   int i=0;
@@ -239,12 +238,12 @@ void customBudget (double totalBudget, double &savingValue) {
 
 double netCalculator(){
 
-vector<string> provinces = {
+  vector<string> provinces = {
     "Alberta", "British Columbia", "Saskatchewan", "Manitoba", "Ontario",
     "Quebec", "New Brunswick", "Nova Scotia", "Prince Edward Island",
     "Newfoundland and Labrador", "Yukon", "Northwest Territories", "Nunavut"};
 
-vector<vector<TaxBracket>> taxBrackets = {
+  vector<vector<TaxBracket>> taxBrackets = {
     {{60000, 0.08}, {151234, 0.10}, {181481, 0.12}, {241974, 0.13}, {362961, 0.14}, {1e9, 0.15}},
     {{49279, 0.0506}, {98560, 0.077}, {113158, 0.105}, {137407, 0.1229}, {186306, 0.147}, {259829, 0.168}, {1e9, 0.205}},
     {{53463, 0.105}, {152750, 0.125}, {1e9, 0.145}},
@@ -260,36 +259,36 @@ vector<vector<TaxBracket>> taxBrackets = {
     {{54707, 0.04}, {109413, 0.07}, {177881, 0.09}, {1e9, 0.115}}};
 
 
-cout << "Select your province by number:\n" << endl;
-for (size_t i = 0; i < provinces.size(); ++i)
-{
-    cout << i + 1 << ". " << provinces[i] << "\n";
-}
+  cout << "Select your province by number:\n" << endl;
+  for (size_t i = 0; i < provinces.size(); ++i)
+    {
+      cout << i + 1 << ". " << provinces[i] << "\n";
+    }
 
-int choice = 0;
-double income;
+  int choice = 0;
+  double income;
 
-cout << "\nEnter your choice (1-13): ";
-cin >> choice;
+  cout << "\nEnter your choice (1-13): ";
+  cin >> choice;
 
-while (choice < 1 || choice > 13)
-{
+  while (choice < 1 || choice > 13)
+  {
     cout << "Invalid province selection.\n";
     cin >> choice;
-}
+  }
 
-cout << "Enter your taxable income: $";
-cin >> income;
+  cout << "Enter your taxable income: $";
+  cin >> income;
 
-double tax = calculateTax(income, taxBrackets[choice - 1]);
-double netIncome = income - tax;
+  double tax = calculateTax(income, taxBrackets[choice - 1]);
+  double netIncome = income - tax;
 
-cout << "\nProvince: " << provinces[choice - 1] << "\n";
-cout << "Taxable Income: $" << income << "\n";
-cout << "Estimated Provincial Tax: $" << tax << "\n";
-cout << "Income After Tax: $" << netIncome << "\n";
+  cout << "\nProvince: " << provinces[choice - 1] << "\n";
+  cout << "Taxable Income: $" << income << "\n";
+  cout << "Estimated Provincial Tax: $" << tax << "\n";
+  cout << "Income After Tax: $" << netIncome << "\n";
 
-return netIncome;
+  return netIncome;
 }
 
 double calculateTax(double income, const vector<TaxBracket> &brackets){
@@ -313,6 +312,3 @@ double calculateTax(double income, const vector<TaxBracket> &brackets){
 
     return tax;
 }
-
-
-
