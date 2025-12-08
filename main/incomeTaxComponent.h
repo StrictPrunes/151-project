@@ -89,5 +89,8 @@ double netCalculator(){
   cout << "Estimated Provincial Tax: $" << tax << "\n";
   cout << "Income After Tax: $" << netIncome << "\n";
 
+  cout << "\nReturning to selection screen...\n";
+  cout << "--------------------------------------------\n\n";
+
   return netIncome;
 }
