@@ -1,6 +1,17 @@
+ /******************************************************************
+ * Simon Fraser University
+ * ENSC-151 Introduction to Software Development for Engineers
+ * main.cpp -- 
+ * 
+ * Input: choice -- user choice of component
+ * 
+ * Output: 
+ *
+ * Authors: Jeromey Gong, Gabriel Dryer, Khang Luu, Jonathan Chen, Naseem Folami
+ *
+ *******************************************************************/
 #include <iostream>
 #include <iomanip>
-#include <vector>
 #include "budgetComponent.h"
 #include "incomeTaxComponent.h"
 #include "interestComponent.h"
@@ -9,6 +20,14 @@ using namespace std;
 
 void selection (int &choice);
 
+/******************************************************************
+ * main -
+ *
+ * Parameters: none
+ * Modifies: nothing
+ *
+ * Returns: 0
+ *******************************************************************/
 int main() {
   int choice;
   double netIncome = 0;
@@ -17,6 +36,9 @@ int main() {
   selection (choice);
 
   while (choice != 4) {
+    cout << "\nLoading component " << choice << "... " << endl;
+    cout << "--------------------------------------------\n";
+
     if (choice == 1) {
       netIncome = netCalculator();  
     } else if (choice == 2) {
@@ -28,15 +50,25 @@ int main() {
     selection (choice);
 
     if (choice == 4) {
-      cout << "Program terminating.";
+      cout << "\nProgram terminating.";
     }
   }
 
   return 0;  
 }
-
+ /******************************************************************
+ * selection -- prompts for users choice of component
+ *
+ * Parameters: choice -- user choice of component
+ * 
+ * Modifies: choice -- user choice of component
+ *
+ * Precondition: none
+ *
+ * Returns: nothing
+ *******************************************************************/
 void selection (int &choice) {
-  cout << "Select the component you would like to use" << endl;
+  cout << "Select the component you would like to use: " << endl;
   cout << "1. Net income calculator." << endl;
   cout << "2. Budget breakdown." << endl;
   cout << "3. Interest calculator." << endl;
