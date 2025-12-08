@@ -1,3 +1,13 @@
+/******************************************************************
+ * Simon Fraser University
+ * ENSC-151 Introduction to Software Development for Engineers
+ * incomeTaxComponent.h -- calculates taxes and net income based on tax bracket
+ *
+ * Primary author: Khang Luu
+ * Secondary author: Naseem Folami
+ *
+ *******************************************************************/
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -94,3 +104,4 @@ double netCalculator(){
 
   return netIncome;
 }
+
