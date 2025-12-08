@@ -15,8 +15,6 @@
 
 using namespace std;
 
-void interest(double savings);
-
 /**********************************************************************
  * interest -- calculates the interest earned from savings
  * 
@@ -25,18 +23,33 @@ void interest(double savings);
  * 
  * Returns: amount -- the amount of interest earned
  *********************************************************************/
-void interest(double savings) {
-  int choice, frequency;
+void interest(double savingValue) {
+  int choice, choice2, frequency;
   double rate, time, amount, principle;
 
-  cout << "\nPlease choose which type of interest to use: \n1) Simple Interest \n2) Compound Interest";
+  cout << "\nPlease choose which type of interest to use: \n1) Simple Interest \n2) Compound Interest\n";
   cin >> choice;
 
-  cout << "Please enter the principle amount: ";
-  cin >> principle;
+  cout << "\nSelect one of the following options: " << endl;
+  cout << "1. Use savings as principle amount." << endl;
+  cout << "2. Use custom value." << endl;
+  cin >> choice2;
+
+  if (choice2 == 1){
+    if (savingValue <= 0) {
+      cout << "\nNo saving value found" << endl;
+      cout << "Please input the principle amount." << endl;
+      cin >> principle;
+    }else{
+      principle = savingValue;
+    }
+  } else {
+    cout << "\nPlease enter the principle amount: " << endl;
+    cin >> principle;
+  }
 
   do {
-        cout << "\nPlease enter how much time (in years) the interest is compounding for: ";
+        cout << "\nPlease enter how much time (in years) the interest is calculated for: ";
         cin >> time;
         if (time < 0 || time > 100)
         {
@@ -59,7 +72,7 @@ void interest(double savings) {
   else if (choice == 2) {
     do {
           cout << "\nPlease enter how many times per year interest is compounded:" << 
-          "\nAnnualy: 1 \nSemi-Annualy: 2 \nQuarterly: 4 \nMonthly: 12 \nWeekly: 52 \nDaily: 365";
+          "\nAnnualy: 1 \nSemi-Annualy: 2 \nQuarterly: 4 \nMonthly: 12 \nWeekly: 52 \nDaily: 365\n";
           cin >> frequency;
           if (frequency <= 0 || frequency > 365)
           {
@@ -71,4 +84,8 @@ void interest(double savings) {
   }
 
   cout << "\nInterest earned: $" << amount << endl;
+  cout << "Total savings: $" << amount + principle << endl;
+
+  cout << "\nReturning to selection screen...\n";
+  cout << "--------------------------------------------\n\n";
 }
