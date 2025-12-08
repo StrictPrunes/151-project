@@ -81,7 +81,7 @@ void budget (double netIncome, double &savingValue) {
  * Returns: nothing
  *******************************************************************/
 void recommendedBudget (double totalBudget, double &savingValue) {
-  cout << "We recommend following the 50/30/20 rule for budgeting." << endl;
+  cout << "\nWe recommend following the 50/30/20 rule for budgeting." << endl;
   cout << "This means that 50% of your budget will be allocated to needs, 30% to wants, and 20% to savings and debt repayment." << endl;
 
   double needs, wants;
@@ -90,9 +90,12 @@ void recommendedBudget (double totalBudget, double &savingValue) {
   wants = 0.3 * totalBudget;
   savingValue = 0.2 * totalBudget;
 
-  cout << "The amount allocated to needs is: " << needs << endl;
-  cout << "The wants allocated to wants is: " << wants << endl;
-  cout << "The savings allocated to savings is: " << savingValue << endl;
+  cout << "\nThe amount allocated to needs is: $" << needs << endl;
+  cout << "The amount allocated to wants is: $" << wants << endl;
+  cout << "The amount allocated to savings is: $" << savingValue << endl;
+
+  cout << "\nReturning to selection screen...\n";
+  cout << "--------------------------------------------\n\n";
 }
 
  /******************************************************************
@@ -121,6 +124,8 @@ void customBudget (double totalBudget, double &savingValue) {
   string temp;   
   double tempAmount, tempPercent; 
 
+    cout << "\nNote: All remaining percentages or amounts will be added to a savings category with the option to calculate interest" << endl;
+
   while (cont != "N" && cont != "n"){
     cout << "\nPlease input title for category " << (i + 1) << ": " << endl;
     cin >> temp;
@@ -132,8 +137,9 @@ void customBudget (double totalBudget, double &savingValue) {
     } while (choice != 1 && choice != 2);
     
     if(choice == 1){
-      cout << "\nPlease input amount for " << catName[i] << ": " << endl;
+      cout << "\nPlease input amount for " << catName[i] << " ($): " << endl;
       cin >> tempAmount;
+        
       catAmount.push_back(tempAmount); 
 
       tempPercent = catAmount[i] / totalBudget * 100;
@@ -142,7 +148,7 @@ void customBudget (double totalBudget, double &savingValue) {
       totalAmount = totalAmount + catAmount[i];
       totalPercent = totalPercent + catPercent[i];
     }else {
-      cout << "\nPlease input percentage for " << catName[i] << ": " <<endl;
+      cout << "\nPlease input percentage for " << catName[i] << " (%): " <<endl;
       cin >> tempPercent; 
       catPercent.push_back(tempPercent);
 
@@ -153,22 +159,86 @@ void customBudget (double totalBudget, double &savingValue) {
       totalAmount = totalAmount + catAmount[i];
     }
 
-    cout << "\n-------------------------------------\n";
+    cout << "\n--------------------------------------------\n";
     cout << "Current categories: \n";
     for (int i = 0; i < catName.size(); i++) {
-      cout << catName[i] << ": $" << catAmount[i] << " (" << catPercent[i] << "%)" << endl;
+      cout << i+1 << ". " << catName[i] << ": $" << catAmount[i] << " (" << catPercent[i] << "%)" << endl;
     }
 
-    cout << "\nAmount remaining: $" << totalBudget - totalAmount << " (" << 100 - totalPercent << "%)" <<endl;
+    savingValue = totalBudget - totalAmount;
+    cout << "\nAmount in savings: $" << savingValue << " (" << 100 - totalPercent << "%)" <<endl;
+    cout << "--------------------------------------------\n";
 
-    cout << "\nWould you like to add more categories? (Y/N)";
-    cin >> cont;
+    i++;
+    
+    int choice2, erase;
+
+    cout << "\nWould you like to: \n";
+    cout << "1) Add more categories.\n";
+    cout << "2) Erase a category.\n";
+    cout << "3) Erase all categories.\n";
+    cout << "4) Return to selection screen.\n";
+    cin >> choice2;
+
+    if (choice2 == 4) {
+      cont = "N";
+    }
+
+    while (choice2 != 4 && choice2 != 1) {
+      if (choice2 == 2){
+        cout << "\nWhich category would you like to erase (input the category number): \n";
+        cin >> erase;
+
+        savingValue = savingValue + catAmount[erase-1];
+        totalPercent = totalPercent - catPercent[erase-1];
+        totalAmount = totalAmount - catAmount[erase-1];
+
+        catAmount.erase(catAmount.begin() + (erase - 1));
+        catName.erase(catName.begin() + (erase - 1));
+        catPercent.erase(catPercent.begin() + (erase - 1));
+
+        i--; 
+            
+        cout << "\n--------------------------------------------\n";
+        cout << "Current categories: \n";
+        for (int i = 0; i < catName.size(); i++) {
+            cout << i+1 << ". " << catName[i] << ": $" << catAmount[i] << " (" << catPercent[i] << "%)" << endl;
+        }
+        
+        cout << "\nAmount in savings: $" << savingValue << " (" << 100 - totalPercent << "%)" <<endl; 
+        cout << "--------------------------------------------\n";
+      } else {
+        cout << "\nClearing all categories...\n";
+        cout << "--------------------------------------------\n";
+        catAmount.clear();
+        catName.clear();
+        catPercent.clear();
+            
+        totalAmount = 0;
+        totalPercent = 0;
+        savingValue = 0;
+        i=0;
+      }
+
+      
+      cout << "\nWould you like to: \n";
+      cout << "1) Add more categories.\n";
+      cout << "2) Erase a category.\n";
+      cout << "3) Erase all categories.\n";
+      cout << "4) Return to selection screen.\n";
+      cin >> choice2;
+
+      if (choice2 == 4) {
+        cont = "N";
+      }
+    }
+    
 
     if (cont == "N" || cont == "n") {
       cout << "\nReturning to selection screen...\n";
-      cout << "-------------------------------------\n\n";
+      cout << "--------------------------------------------\n\n";
     }
 
-    i++;
+    
   }
 }
