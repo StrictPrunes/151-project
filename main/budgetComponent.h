@@ -1,3 +1,15 @@
+ /******************************************************************
+ * Simon Fraser University
+ * ENSC-151 Introduction to Software Development for Engineers
+ * budgetComponent.h -- prompts and computes user budget
+ * 
+ * Input: -
+ * 
+ * Output: 
+ *
+ * Authors: Jeromey Gong and Gabriel Dryer
+ *
+ *******************************************************************/
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -8,32 +20,44 @@ void budget (double netIncome, double &savingValue);
 void recommendedBudget (double totalBudget, double &savingValue);
 void customBudget (double totalBudget, double &savingValue);
 
+ /******************************************************************
+ * budget -- provides user choice for budget selection
+ *
+ * Parameters: netIncome -- the users net income if calculated previously
+ *             savingValue -- amount of savings
+ * 
+ * Modifies: savingValue -- amount of savings
+ *
+ * Precondition: none
+ *
+ * Returns: nothing
+ *******************************************************************/
 void budget (double netIncome, double &savingValue) {
   int incomeChoice;
   double totalBudget;
   
-  cout << "Select 1 or 2" << endl;
-  cout << "1. Use net income as total budget" << endl;
-  cout << "2. Use custom value" << endl;
+  cout << "\nSelect one of the following options: " << endl;
+  cout << "1. Use net income as total budget." << endl;
+  cout << "2. Use custom value." << endl;
   cin >> incomeChoice;
 
   if (incomeChoice == 1){
     if (netIncome <= 0) {
-      cout << "No net income found" << endl;
+      cout << "\nNo net income found" << endl;
       cout << "Please input your total budget." << endl;
       cin >> totalBudget;
     }else{
       totalBudget = netIncome;
     }
   } else {
-    cout << "Please input your total budget." << endl;
+    cout << "\nPlease input your total budget." << endl;
     cin >> totalBudget;
   }
 
   int budgetChoice;
-  cout << "Would you like to: " << endl; 
-  cout << "1. use the recommended budget or" << endl;
-  cout << "2. input your own categories." << endl;
+  cout << "\nWould you like to: " << endl; 
+  cout << "1. Use the recommended budget or" << endl;
+  cout << "2. Input your own categories." << endl;
   cin >> budgetChoice;
 
   if (budgetChoice == 1) {
@@ -44,7 +68,18 @@ void budget (double netIncome, double &savingValue) {
 
 }
 
-
+ /******************************************************************
+ * recommendedBudget -- computes recommended budget
+ *
+ * Parameters: totalBudget -- user's total budget
+ *             savingValue -- amount of savings
+ * 
+ * Modifies: savingValue -- amount of savings
+ *
+ * Precondition: none
+ *
+ * Returns: nothing
+ *******************************************************************/
 void recommendedBudget (double totalBudget, double &savingValue) {
   cout << "We recommend following the 50/30/20 rule for budgeting." << endl;
   cout << "This means that 50% of your budget will be allocated to needs, 30% to wants, and 20% to savings and debt repayment." << endl;
@@ -60,6 +95,18 @@ void recommendedBudget (double totalBudget, double &savingValue) {
   cout << "The savings allocated to savings is: " << savingValue << endl;
 }
 
+ /******************************************************************
+ * customBudget -- prompts for users choice of budget category and value
+ *
+ * Parameters: totalBudget -- user's total budget
+ *             savingValue -- amount of savings
+ * 
+ * Modifies: savingValue -- amount of savings
+ *
+ * Precondition: none
+ *
+ * Returns: nothing
+ *******************************************************************/
 void customBudget (double totalBudget, double &savingValue) {
   string cont;
   int choice;
@@ -74,20 +121,18 @@ void customBudget (double totalBudget, double &savingValue) {
   string temp;   
   double tempAmount, tempPercent; 
 
-  cout << "Note: All remaining percentages or amounts will be added to a savings category with the option to calculate interest" << endl << endl;
-  
   while (cont != "N" && cont != "n"){
-    cout << "Please input title for category " << (i + 1) << endl;
+    cout << "\nPlease input title for category " << (i + 1) << ": " << endl;
     cin >> temp;
     catName.push_back(temp);
     
     do{
-      cout << "Will investments be an amount or percentage \n1) Amount \n2) Percent" << endl;
+      cout << "\nWill the value given to the category be an amount or a percentage: \n1) Amount \n2) Percent" << endl;
       cin >> choice;
     } while (choice != 1 && choice != 2);
     
     if(choice == 1){
-      cout << "Please input amount for " << catName[i] << endl;
+      cout << "\nPlease input amount for " << catName[i] << ": " << endl;
       cin >> tempAmount;
       catAmount.push_back(tempAmount); 
 
@@ -97,7 +142,7 @@ void customBudget (double totalBudget, double &savingValue) {
       totalAmount = totalAmount + catAmount[i];
       totalPercent = totalPercent + catPercent[i];
     }else {
-      cout << "Please input percentage for " << catName[i] << endl;
+      cout << "\nPlease input percentage for " << catName[i] << ": " <<endl;
       cin >> tempPercent; 
       catPercent.push_back(tempPercent);
 
