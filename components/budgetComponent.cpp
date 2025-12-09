@@ -1,7 +1,7 @@
  /******************************************************************
  * Simon Fraser University
  * ENSC-151 Introduction to Software Development for Engineers
- * budgetComponent.h -- prompts and computes user budget
+ * budgetComponent.cpp -- prompts and computes user budget
  * 
  * Input: -
  * 
@@ -243,3 +243,4 @@ void customBudget (double totalBudget, double &savingValue) {
     }
   }
 }
+
