@@ -12,9 +12,9 @@
  *******************************************************************/
 #include <iostream>
 #include <iomanip>
-#include "budgetComponent.h"
-#include "incomeTaxComponent.h"
-#include "interestComponent.h"
+#include <string>
+#include <vector>
+#include <cmath>
 
 using namespace std;
 
