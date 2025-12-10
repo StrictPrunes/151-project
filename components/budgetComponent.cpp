@@ -49,8 +49,10 @@ void budget (double netIncome, double &savingValue) {
       totalBudget = netIncome;
     }
   } else {
+    do{
     cout << "\nPlease input your total budget." << endl;
     cin >> totalBudget;
+    } while(totalBudget < 0);
   }
 
   //prompt for choice of budget type
@@ -139,8 +141,10 @@ void customBudget (double totalBudget, double &savingValue) {
     } while (choice != 1 && choice != 2);
     
     if(choice == 1){ //prompt for amount
+      do{
       cout << "\nPlease input amount for " << catName[i] << " ($): " << endl;
       cin >> tempAmount;
+      while(tempAmount <= 0);
         
       catAmount.push_back(tempAmount); 
 
@@ -151,8 +155,11 @@ void customBudget (double totalBudget, double &savingValue) {
       totalAmount = totalAmount + catAmount[i];
       totalPercent = totalPercent + catPercent[i];
     }else { //prompt for percent
+      do{
       cout << "\nPlease input percentage for " << catName[i] << " (%): " <<endl;
       cin >> tempPercent; 
+      while(tempPercent <= 0);
+       
       catPercent.push_back(tempPercent);
 
       //update variables
@@ -240,5 +247,6 @@ void customBudget (double totalBudget, double &savingValue) {
     }
   }
 }
+
 
 
