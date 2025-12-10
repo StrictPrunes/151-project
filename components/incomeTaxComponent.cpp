@@ -1,10 +1,10 @@
 /******************************************************************
  * Simon Fraser University
  * ENSC-151 Introduction to Software Development for Engineers
- * incomeTaxComponent.cpp -- calculates taxes and net income based on tax bracket
+ * incomeTaxComponent.cpp -- calculates taxes and net income based on tax bracket and provincial
  *
- * Primary author: Khang Luu
- * Secondary author: Naseem Folami
+ * Author: Khang Luu , Naseem Folami 
+ *
  *
  *******************************************************************/
 
@@ -14,6 +14,15 @@
 #include "incomeTaxComponent.h"
 
 using namespace std;
+
+/******************************************************************
+ * calculateTax -- function for tax calculation
+ *
+ * Parameters: none
+ * Modifies: none
+ *
+ * Returns: tax
+ *******************************************************************/
 
 double calculateTax(double income, const vector<TaxBracket> &brackets)
 {
@@ -36,6 +45,16 @@ double calculateTax(double income, const vector<TaxBracket> &brackets)
 
     return tax;
 }
+
+/******************************************************************
+ * netCalculator -- calculate net income base on provincial
+ *
+ * Parameters: none
+ * Modifies: none
+ *
+ * Returns: netIncome
+ *******************************************************************/
+
 
 double netCalculator(){
 
@@ -94,6 +113,16 @@ double netCalculator(){
 
   return netIncome;
 }
+/******************************************************************
+ * $RCSfile$   $Revision$
+ * $Date$
+ * $State$
+ *
+ *                     REVISION HISTORY
+ *
+ * $Log$
+ *
+ ******************************************************************/
 
 
 
