@@ -13,12 +13,9 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include "budgetComponent.h"
 
 using namespace std;
-
-void budget (double netIncome, double &savingValue);
-void recommendedBudget (double totalBudget, double &savingValue);
-void customBudget (double totalBudget, double &savingValue);
 
  /******************************************************************
  * budget -- provides user choice for budget selection
@@ -243,4 +240,5 @@ void customBudget (double totalBudget, double &savingValue) {
     }
   }
 }
+
 
