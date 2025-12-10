@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "incomeTaxComponent"
 
 using namespace std;
 
@@ -104,5 +105,6 @@ double netCalculator(){
 
   return netIncome;
 }
+
 
 
