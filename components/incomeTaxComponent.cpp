@@ -11,20 +11,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "incomeTaxComponent"
+#include "incomeTaxComponent.h"
 
 using namespace std;
-
-
-double netCalculator();
-
-struct TaxBracket
-{
-    double limit;
-    double rate;
-};
-
-double calculateTax(double income, const vector<TaxBracket> &brackets);
 
 double calculateTax(double income, const vector<TaxBracket> &brackets)
 {
@@ -105,6 +94,7 @@ double netCalculator(){
 
   return netIncome;
 }
+
 
 
 
