@@ -78,6 +78,9 @@ double netCalculator(){
     {{51964, 0.059}, {103930, 0.086}, {168967, 0.122}, {1e9, 0.1405}},
     {{54707, 0.04}, {109413, 0.07}, {177881, 0.09}, {1e9, 0.115}}};
 
+vector<vector<TaxBracket>> federalBracket = {
+    {{57375, 0.145}, {114750, 0.205}, {177882, 0.26}, {253414, 0.29}, {1e9, 0.33}}};
+
 
   cout << "Select your province by number:\n" << endl;
   for (size_t i = 0; i < provinces.size(); ++i)
@@ -101,11 +104,13 @@ double netCalculator(){
   cin >> income;
 
   double tax = calculateTax(income, taxBrackets[choice - 1]);
+  double federalTax = calculateTax(income, federalBracket[0]);
   double netIncome = income - tax;
 
   cout << "\nProvince: " << provinces[choice - 1] << "\n";
   cout << "Taxable Income: $" << income << "\n";
-  cout << "Estimated Provincial Tax: $" << tax << "\n";
+  cout << "Estimated Provincial Tax: $" << tax << "\n"
+  cout << "Estimated Federal Tax: $" << federalTax << endl;
   cout << "Income After Tax: $" << netIncome << "\n";
 
   cout << "\nReturning to selection screen...\n";
@@ -123,6 +128,7 @@ double netCalculator(){
  * $Log$
  *
  ******************************************************************/
+
 
 
 
