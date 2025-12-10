@@ -12,6 +12,7 @@
  *****************/
 #include <iostream>
 #include <cmath>
+#include "interestComponent.h"
 
 using namespace std;
 
@@ -89,3 +90,4 @@ void interest(double savingValue) {
   cout << "\nReturning to selection screen...\n";
   cout << "--------------------------------------------\n\n";
 }
+
