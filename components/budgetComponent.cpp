@@ -33,34 +33,58 @@ void budget (double netIncome, double &savingValue) {
   int incomeChoice;
   double totalBudget;
   
-  //prompt for user choice of total budget
-  cout << "\nSelect one of the following options: " << endl;
-  cout << "1. Use net income as total budget." << endl;
-  cout << "2. Use custom value." << endl;
-  cin >> incomeChoice;
+  do {
+    //prompt for user choice of total budget
+    cout << "\nSelect one of the following options: " << endl;
+    cout << "1. Use net income as total budget." << endl;
+    cout << "2. Use custom value." << endl;
+    cin >> incomeChoice;
+
+    if (incomeChoice != 1 && incomeChoice !=2) {
+      cout << "\nInvalid input, please reenter a valid number: \n";
+    }
+  } while (incomeChoice != 1 && incomeChoice !=2);
 
   //input total budget depending on choice
   if (incomeChoice == 1){
     if (netIncome <= 0) {
       cout << "\nNo net income found" << endl;
-      cout << "Please input your total budget." << endl;
-      cin >> totalBudget;
+      do {
+        cout << "Please input your total budget." << endl;
+        cin >> totalBudget;
+      
+        if (totalBudget < 0) {
+          cout << "\nBudget cannot be negative, please reenter a valid number: \n";
+        }
+      } while (totalBudget < 0);  
     }else{
       totalBudget = netIncome;
     }
   } else {
-    do{
-    cout << "\nPlease input your total budget." << endl;
-    cin >> totalBudget;
-    } while(totalBudget < 0);
+    do {
+      cout << "\nPlease input your total budget." << endl;
+      cin >> totalBudget;
+
+      if (totalBudget < 0) {
+        cout << "\nBudget cannot be negative, please reenter a valid number: \n";
+      }
+    } while (totalBudget < 0);
   }
 
   //prompt for choice of budget type
   int budgetChoice;
-  cout << "\nWould you like to: " << endl; 
-  cout << "1. Use the recommended budget or" << endl;
-  cout << "2. Input your own categories." << endl;
-  cin >> budgetChoice;
+  do {
+    //prompt for choice of budget type
+  
+    cout << "\nWould you like to: " << endl; 
+    cout << "1. Use the recommended budget or" << endl;
+    cout << "2. Input your own categories." << endl;
+    cin >> budgetChoice;
+    
+    if (budgetChoice != 1 && budgetChoice !=2) {
+      cout << "\nInvalid input, please reenter a valid number: \n";
+    }
+  } while (budgetChoice != 1 && budgetChoice !=2);
 
   if (budgetChoice == 1) {
     recommendedBudget (totalBudget, savingValue);
@@ -135,16 +159,24 @@ void customBudget (double totalBudget, double &savingValue) {
     catName.push_back(temp);
     
     //prompt for value type
-    do{
+    do {
       cout << "\nWill the value given to the category be an amount or a percentage: \n1) Amount \n2) Percent" << endl;
       cin >> choice;
+      
+      if (choice != 1 && choice !=2) {
+        cout << "\nInvalid input, please reenter a valid number: \n";
+      }     
     } while (choice != 1 && choice != 2);
     
     if(choice == 1){ //prompt for amount
-      do{
-      cout << "\nPlease input amount for " << catName[i] << " ($): " << endl;
-      cin >> tempAmount;
-      while(tempAmount <= 0);
+      do {
+        cout << "\nPlease input amount for " << catName[i] << " ($): " << endl;
+        cin >> tempAmount;
+
+        if (tempAmount < 0) {
+          cout << "\nValue cannot be negative, please reenter a valid number: \n";
+        }
+      } while (tempAmount < 0);   
         
       catAmount.push_back(tempAmount); 
 
@@ -155,10 +187,14 @@ void customBudget (double totalBudget, double &savingValue) {
       totalAmount = totalAmount + catAmount[i];
       totalPercent = totalPercent + catPercent[i];
     }else { //prompt for percent
-      do{
-      cout << "\nPlease input percentage for " << catName[i] << " (%): " <<endl;
-      cin >> tempPercent; 
-      while(tempPercent <= 0);
+      do {
+        cout << "\nPlease input percentage for " << catName[i] << " (%): " <<endl;
+        cin >> tempPercent; 
+
+        if (tempPercent < 0) {
+          cout << "\nValue cannot be negative, please reenter a valid number: \n";
+        }
+      } while (tempPercent < 0);
        
       catPercent.push_back(tempPercent);
 
@@ -182,13 +218,19 @@ void customBudget (double totalBudget, double &savingValue) {
 
     i++;
 
-    //prompt for user choice
-    cout << "\nWould you like to: \n";
-    cout << "1) Add more categories.\n";
-    cout << "2) Erase a category.\n";
-    cout << "3) Erase all categories.\n";
-    cout << "4) Return to selection screen.\n";
-    cin >> cont;
+    do {
+      //prompt for user choice
+      cout << "\nWould you like to: \n";
+      cout << "1) Add more categories.\n";
+      cout << "2) Erase a category.\n";
+      cout << "3) Erase all categories.\n";
+      cout << "4) Return to selection screen.\n";
+      cin >> cont;
+
+      if (cont != 1 && cont !=2 && cont != 3 && cont != 4) {
+        cout << "\nInvalid input, please reenter a valid number: \n";
+      }
+    } while (cont != 1 && cont != 2 && cont != 3 && cont != 4);  
 
     while (cont != 4 && cont != 1) {
       if (cont == 2){ //erase one category
@@ -231,13 +273,19 @@ void customBudget (double totalBudget, double &savingValue) {
         i=0;
       }
 
-      //prompt for user choice
-      cout << "\nWould you like to: \n";
-      cout << "1) Add more categories.\n";
-      cout << "2) Erase a category.\n";
-      cout << "3) Erase all categories.\n";
-      cout << "4) Return to selection screen.\n";
-      cin >> cont;
+      do {
+        //prompt for user choice
+        cout << "\nWould you like to: \n";
+        cout << "1) Add more categories.\n";
+        cout << "2) Erase a category.\n";
+        cout << "3) Erase all categories.\n";
+        cout << "4) Return to selection screen.\n";
+        cin >> cont;
+
+        if (cont != 1 && cont !=2 && cont != 3 && cont != 4) {
+          cout << "\nInvalid input, please reenter a valid number: \n";
+        }
+      } while (cont != 1 && cont != 2 && cont != 3 && cont != 4);
     }
     
     //return to selection screen
@@ -247,6 +295,3 @@ void customBudget (double totalBudget, double &savingValue) {
     }
   }
 }
-
-
-
