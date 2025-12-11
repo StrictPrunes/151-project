@@ -11,7 +11,6 @@
  *
  *******************************************************************/
 #include <iostream>
-#include <iomanip>
 #include <vector>
 #include "budgetComponent.h"
 
@@ -74,7 +73,6 @@ void budget (double netIncome, double &savingValue) {
   //prompt for choice of budget type
   int budgetChoice;
   do {
-    //prompt for choice of budget type
   
     cout << "\nWould you like to: " << endl; 
     cout << "1. Use the recommended budget or" << endl;
@@ -214,6 +212,11 @@ void customBudget (double totalBudget, double &savingValue) {
     }
     savingValue = totalBudget - totalAmount;
     cout << "\nAmount in savings: $" << savingValue << " (" << 100 - totalPercent << "%)" <<endl;
+    
+    if (totalAmount > totalBudget) {
+      cout << "\nWarning: total allocated exceeds total budget.\n";
+    }
+   
     cout << "--------------------------------------------\n";
 
     i++;
