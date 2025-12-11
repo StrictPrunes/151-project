@@ -2,10 +2,6 @@
  * Simon Fraser University
  * ENSC-151 Introduction to Software Development for Engineers
  * budgetComponent.cpp -- prompts and computes user budget
- * 
- * Input: -
- * 
- * Output: 
  *
  * Authors: Jeromey Gong and Gabriel Dryer
  *
@@ -298,3 +294,4 @@ void customBudget (double totalBudget, double &savingValue) {
     }
   }
 }
+
