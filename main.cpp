@@ -11,6 +11,7 @@
  *
  *******************************************************************/
 #include <iostream>
+#include <iomanip>
 #include "budgetComponent.h"
 #include "incomeTaxComponent.h"
 #include "interestComponent.h"
@@ -34,6 +35,8 @@ int main() {
 
   selection (choice);
 
+  cout << fixed << setprecision(2);
+ 
   while (choice != 4) {
     cout << "\nLoading component " << choice << "... " << endl;
     cout << "--------------------------------------------\n";
