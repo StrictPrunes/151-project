@@ -1,7 +1,7 @@
  /******************************************************************
  * Simon Fraser University
  * ENSC-151 Introduction to Software Development for Engineers
- * budgetComponent.h -- function declarations and structs for handling income tax
+ * incomeTaxComponent.h -- function declarations and structs for handling income tax
  *
  * Authors: Khang Luu and Naseem Folami
  *
