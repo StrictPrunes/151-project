@@ -255,6 +255,11 @@ void customBudget (double totalBudget, double &savingValue) {
             cout << i+1 << ". " << catName[i] << ": $" << catAmount[i] << " (" << catPercent[i] << "%)" << endl;
         }
         cout << "\nAmount in savings: $" << savingValue << " (" << 100 - totalPercent << "%)" <<endl; 
+
+        if (totalAmount > totalBudget) {
+          cout << "\nWarning: total allocated exceeds total budget.\n";
+        }
+       
         cout << "--------------------------------------------\n";
       } else { //erase all categories
         cout << "\nClearing all categories...\n";
@@ -294,4 +299,5 @@ void customBudget (double totalBudget, double &savingValue) {
     }
   }
 }
+
 
