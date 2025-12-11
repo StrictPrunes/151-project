@@ -105,7 +105,7 @@ vector<vector<TaxBracket>> federalBracket = {
 
   double tax = calculateTax(income, taxBrackets[choice - 1]);
   double federalTax = calculateTax(income, federalBracket[0]);
-  double netIncome = income - tax;
+  double netIncome = income - (tax + federalTax);
 
   cout << "\nProvince: " << provinces[choice - 1] << "\n";
   cout << "Taxable Income: $" << income << "\n";
@@ -128,6 +128,7 @@ vector<vector<TaxBracket>> federalBracket = {
  * $Log$
  *
  ******************************************************************/
+
 
 
 
