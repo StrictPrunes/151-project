@@ -2,10 +2,6 @@
  * Simon Fraser University
  * ENSC-151 Introduction to Software Development for Engineers
  * main.cpp -- 
- * 
- * Input: choice -- user choice of component
- * 
- * Output: 
  *
  * Authors: Jeromey Gong, Gabriel Dryer, Khang Luu, Jonathan Chen, Naseem Folami
  *
@@ -18,7 +14,7 @@
 
 using namespace std;
 
-void selection (int &choice);
+void selection (int &choice); //prompts user to choose a component
 
 /******************************************************************
  * main -
@@ -33,14 +29,16 @@ int main() {
   double netIncome = 0;
   double savings = 0;
 
-  selection (choice);
+  selection (choice); //prompts user for component choice
 
-  cout << fixed << setprecision(2);
- 
+  cout << fixed << setprecision(2); //all values expressed to two decimal places
+
   while (choice != 4) {
+    //loading message
     cout << "\nLoading component " << choice << "... " << endl;
     cout << "--------------------------------------------\n";
 
+    //load component depending on user choice
     if (choice == 1) {
       netIncome = netCalculator();  
     } else if (choice == 2) {
@@ -49,8 +47,9 @@ int main() {
         interest (savings);
     }
 
-    selection (choice);
+    selection (choice); //reprompt for component
 
+    //if user selects choice for, display termination message and exit loop
     if (choice == 4) {
       cout << "\nProgram terminating.";
     }
