@@ -1,14 +1,10 @@
-/****************
+ /******************************************************************
  * Simon Fraser University
- * ENSC151 Intro to Software Development for Engineers
- * interestComponent.h -- Program that calculates the interest gained on savings
- * 
- * Input: The principal (initial) amount
- *            Annual interest rate
- *            Number of times interest is compounded
- * Output: The amount of interest earned
- * 
- * Author: Jonathan Chen
- *****************/
+ * ENSC-151 Introduction to Software Development for Engineers
+ * interestComponent.h -- function declarations for handling interest
+ *
+ * Authors: Jonathan Chen
+ *
+ *******************************************************************/
 
 void interest(double savingValue);
